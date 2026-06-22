@@ -192,7 +192,7 @@
             "uid": "${DS_VICTORIALOGS}"
           },
           "editorMode": "code",
-          "expr": "{app=\"envoy\", k_pod_name=~`${gateway:regex}.*`} \n| user-agent:!~\"(Vector|Gatus|Uptime-Kuma).*\" \n| \":authority\":~`${domain:regex}` \n| response_code:~`${response_code:regex}` \n| x-envoy-origin-path:~`${path:regex}`\n| downstream_remote_address:!~`(${exclude_ips}).*`",
+          "expr": "{app=\"envoy\", k_pod_name=~\"${gateway:regex}.*\"} \nuser-agent:!~\"(Vector|Gatus|Uptime-Kuma).*\" \nrequested_server_name:$domain \nresponse_code:$response_code \nx-envoy-origin-path:~\"${path:regex}\" \ndownstream_remote_address:!~\"(${exclude_ips}).*\"",
           "queryType": "instant",
           "refId": "A"
         }
